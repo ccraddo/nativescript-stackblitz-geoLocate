@@ -11,7 +11,7 @@ export class HelloWorldModel extends Observable {
 
     // Initialize default values.
     this._counter = 42;
-    this.updateMessage({ lat: 0, lng: 0 });
+    this.updateMessage(null);
     geolocation.enableLocationRequest();
   }
 
@@ -45,7 +45,7 @@ export class HelloWorldModel extends Observable {
       this.message =
         'Hoorraaay! You unlocked the NativeScript clicker achievement!';
     } else {
-      this.message = `${this._counter} lat:${ful.latitude} lng:${ful.lng}`;
+      this.message = `${this._counter}`;
     }
 
     // log the message to the console
