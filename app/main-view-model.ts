@@ -5,14 +5,15 @@ import { CoreTypes } from '@nativescript/core';
 export class HelloWorldModel extends Observable {
   private _counter: number;
   private _message: string;
+  private _loc: geolocation.Location;
+  private _lat: string;
 
   constructor() {
     super();
-
     // Initialize default values.
-    this._counter = 42;
-    this.updateMessage(null);
     geolocation.enableLocationRequest();
+    this.getLocation();
+    this._lat = 'Latitude: 0';
   }
 
   get message(): string {
@@ -26,17 +27,30 @@ export class HelloWorldModel extends Observable {
     }
   }
 
-  onTap() {
-    this._counter--;
-    var location = geolocation.getCurrentLocation({
-      desiredAccuracy: CoreTypes.Accuracy.high,
-      maximumAge: 5000,
-      timeout: 20000,
-    });
+  get lat(): string {
+    if (this._lat !== 'undefined') return 'Latitude: ' + this._loc?.latitude;
+    else return 'Latitude: 0';
+  }
 
-    location.then((ful) => {
-      this.updateMessage(ful);
-    });
+  set lat(value: string) {
+    if (this._lat !== value) {
+      this._lat = value;
+      this.notifyPropertyChange('lat', value);
+    }
+  }
+
+  get lng(): string {
+    return this._loc?.longitude.toString();
+  }
+
+  get alt(): string {
+    return this._loc?.altitude.toString();
+  }
+
+  onTap() {
+    this.getLocation();
+    console.log(this._loc);
+
     // Get current location with high accuracy
   }
 
@@ -45,11 +59,24 @@ export class HelloWorldModel extends Observable {
       this.message =
         'Hoorraaay! You unlocked the NativeScript clicker achievement!';
     } else {
-      this.message = `${this._counter} ${ful.latitude}`;
+      this.message = ` lat:${ful?.latitude} lng:${ful?.longitude}`;
     }
 
     // log the message to the console
     console.log(this.message);
     console.log(ful);
+  }
+
+  private getLocation() {
+    var location = geolocation.getCurrentLocation({
+      desiredAccuracy: CoreTypes.Accuracy.high,
+      maximumAge: 5000,
+      timeout: 20000,
+    });
+
+    location.then((ful) => {
+      this._loc = ful;
+      this.lat = 'Latitude: ' + this._loc?.latitude;
+    });
   }
 }
