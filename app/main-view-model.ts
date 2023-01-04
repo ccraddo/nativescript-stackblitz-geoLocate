@@ -36,7 +36,7 @@ export class HelloWorldModel extends Observable {
     if (this._lat !== value) {
       this._lat = value;
       this.notifyPropertyChange('lat', value);
-    }
+    } else this.lat = 'nothing new';
   }
 
   get lng(): string {
