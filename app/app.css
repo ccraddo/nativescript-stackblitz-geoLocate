@@ -1,10 +1,21 @@
-@import '@nativescript/theme/css/core.css';
-@import '@nativescript/theme/css/default.css';
+/* @import '@nativescript/theme/css/core.css'; */
+/* @import '@nativescript/theme/css/default.css'; */
+/* @import 'tailwindcss/base'; */
+/* @import 'tailwindcss/components'; */
+/* @import 'tailwindcss/utilities'; */
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 Button.-primary {
-  font-size: 18;
+  font-size: 25;
+  border-radius: .5rem;
+}
+
+StackLayout.custom-linear {
+  background: -webkit-linear-gradient(red,yellow,blue);
+  background: -o-linear-gradient(red,yellow,blue);
+  background: -moz-linear-gradient(red,yellow,blue);
+  background: linear-gradient(red,yellow,blue);
 }

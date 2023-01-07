@@ -1,12 +1,15 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo">
-    <ActionBar title="Location Tap" icon="" />
-
-    <StackLayout class="space-y-4 space-x-2">
-        <Label text="Please tap me" class="text-3xl text-center" />
+    <ActionBar title="Altitude" icon="" />
+    <StackLayout class="custom-linear space-y-4 space-x-2 mx-3">
+        <Label class="text-3xl" />
         <Button text="TAP" tap="{{ onTap }}" class="-primary" />
-        <Label text=" ... " class="text-xl"/>
-        <Label text="{{ lat }}" class="text-5xl text-center bg-yellow-500 text-black " textWrap="false" />
-        <Label text="{{ lng }}" class="text-5xl text-center bg-yellow-500 text-black " textWrap="false" />
-        <Label text="{{ alt }}" class="text-5xl text-center bg-yellow-500 text-black " textWrap="false" />
+        <Label class="text-xl"/>
+        <Label text="{{ lat }}" class="text-4xl text-center bg-yellow-500 text-black " textWrap="false" />
+        <Label text="{{ lng }}" class="text-4xl text-center bg-yellow-500 text-black " textWrap="false" />
+        <Label class="text-3xl text-center" />
+        <StackLayout class="flex space-y-0 mx-4">
+            <Label text="Elevation" class="text-4xl text-center bg-yellow-500 text-black " textWrap="false" />
+            <Label text="{{ alt }}" class="text-4xl text-center bg-yellow-500 text-black " textWrap="false" />
+        </StackLayout>
     </StackLayout>
 </Page>
